@@ -160,3 +160,28 @@ if(top != self){
 ```
 webSettings.setDomStorageEnabled(true);    
 ```
+## 26、WebView实现文件下载功能
+```
+WebView控制调用相应的WEB页面进行展示。当碰到页面有下载链接的时候，点击上去是一点反应都没有的。原来是因为WebView默认没有开启文件下载的功能，如果要实现文件下载的功能，需要设置WebView的DownloadListener，通过实现自己的DownloadListener来实现文件的下载。具体操作如下： 
+
+1、设置WebView的DownloadListener： 
+    webView.setDownloadListener(new MyWebViewDownLoadListener()); 
+
+2、实现MyWebViewDownLoadListener这个类，具体可以如下这样：  
+Java代码
+private class MyWebViewDownLoadListener implements DownloadListener{  
+  
+        @Override  
+        public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,  
+                                    long contentLength) {             
+            Log.i("tag", "url="+url);             
+            Log.i("tag", "userAgent="+userAgent);  
+            Log.i("tag", "contentDisposition="+contentDisposition);           
+            Log.i("tag", "mimetype="+mimetype);  
+            Log.i("tag", "contentLength="+contentLength);  
+            Uri uri = Uri.parse(url);  
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);  
+            startActivity(intent);             
+        }  
+    }  
+```
