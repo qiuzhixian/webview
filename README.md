@@ -185,3 +185,42 @@ private class MyWebViewDownLoadListener implements DownloadListener{
         }  
     }  
 ```
+
+## 27、对于渐变的处理
+有时候UI里面会有一些渐变的效果，无法复制CSS出来，这个时候可以用一个在线的工具，生成渐变的CSS：http://www.cssmatic.com/gradient-generator#，但是这个需要自己手动调一个和UI一模一样的效果，或者可以直接给UI调一个它理想的效果，它会生成兼容性很强的CSS：
+```
+background: #fff;
+background: -moz-linear-gradient(left, #fff 0%, #d2d2d2 43%, #d1d1d1 58%, #fefefe 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, #fff), color-stop(43%, #d2d2d2), color-stop(58%, #d1d1d1), color-stop(100%, #fefefe));
+background: -webkit-linear-gradient(left, #fff 0%, #d2d2d2 43%, #d1d1d1 58%, #fefefe 100%);
+background: -o-linear-gradient(left, #fff 0%, #d2d2d2 43%, #d1d1d1 58%, #fefefe 100%);
+background: -ms-linear-gradient(left, #fff 0%, #d2d2d2 43%, #d1d1d1 58%, #fefefe 100%);
+background: linear-gradient(to right, #fff 0%, #d2d2d2 43%, #d1d1d1 58%, #fefefe 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#fefefe', GradientType=1 );
+```
+
+
+## 28.Webview 设置支持window.open 和window.close
+```
+WebSettings ws = mWebView.getSettings();  
+        ws.setJavaScriptEnabled(true);   
+        ws.setJavaScriptCanOpenWindowsAutomatically(true);  
+        ws.setSupportMultipleWindows(true);  
+class ChromeClient extends WebChromeClient {  
+          
+        @Override  
+        public void onCloseWindow(WebView window) {  
+            //TODO something  
+            super.onCloseWindow(window);  
+        }  
+  
+        @Override  
+        public boolean onCreateWindow(WebView view, boolean isDialog,  
+                boolean isUserGesture, Message resultMsg) {  
+  
+            //TODO something  
+  
+            return true;  
+        }  
+
+```
