@@ -55,7 +55,7 @@ font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
 ## 7、安卓APP内存溢出
 ```
 H5页面很多图片会导致APP内存溢出
-H5缓解行解决方案：
+H5缓解解决方案：
 1，压缩图片 http://zhitu.isux.us/   https://tinypng.com/
 2，代码优化
 
@@ -201,6 +201,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endCol
 
 
 ## 28.Webview 设置支持window.open 和window.close
+
+安卓：
 ```
 WebSettings ws = mWebView.getSettings();  
         ws.setJavaScriptEnabled(true);   
@@ -223,4 +225,9 @@ class ChromeClient extends WebChromeClient {
             return true;  
         }  
 
+```
+
+ios
+```
+preferences.javaScriptCanOpenWindowsAutomatically = YES;  
 ```
