@@ -231,3 +231,52 @@ ios
 ```
 preferences.javaScriptCanOpenWindowsAutomatically = YES;  
 ```
+
+### 29.低端手机加载怪异（渲染不是从上到下，而是竖现出来，超怪）
+
+```
+没解决
+```
+
+### 30.三星S7568I手机不支持background属性简写
+
+```
+不支持：
+    background: url(../img/icon_call.png) no-repeat 0 0/contain;
+    
+支持：
+    background-image: url(../img/icon_call.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+```
+
+### 31.ios8系统不支持flex布局
+
+```
+why：safari使用的是webkit内核，在ios8上需要单独加一下兼容才能起作用
+
+    display: flex;
+    display: -webkit-flex; 
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items:center;
+    -webkit-align-items: center;
+```
+
+### 32.安卓行高异常，文本不居中。
+
+http://www.poorren.com/android-system-web-font-line-exception-resolution
+
+
+- 伪类 :active 生效
+
+```
+html写法：
+
+<body ontouchstart="">
+
+
+js写法：
+document.addEventListener('touchstart', function () {}, false);
+
+```
