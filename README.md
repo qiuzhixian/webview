@@ -26,13 +26,13 @@ a:active {
   document.addEventListener('touchstart',function(){},false);
 </script>
 ```
-## 2、禁止 iOS 弹出各种操作窗口
+## 2、禁止 IOS 弹出各种操作窗口
 ```
--webkit-touch-callout:none
+-webkit-touch-callout:none;
 ```
 ## 3、禁止用户选中文字
 ```
--webkit-user-select:none
+-webkit-user-select:none;
 ```
 ## 4、消除 transition 闪屏
 ```
@@ -60,12 +60,12 @@ H5缓解解决方案：
 2，代码优化
 
 ```
-## 8、ipone6 plus遇上输入框的固定定位,同事触发focus(),导致输入框上移，定位无效。
+## 8、ipone6 plus遇上输入框的固定定位,同时触发focus(),导致输入框上移，定位无效。
 ```
 弹框定位不可以同时触发focus()
 ```
 
-## 9、三星S5不支持border-radius缩写（圆角）
+## 9、三星S5不支持 border-radius缩写（圆角）
 ```
 1，用图片代替圆角
 2，完整写法
@@ -74,7 +74,7 @@ H5缓解解决方案：
     border-right-radius: 999px; /* 右下角 */
     border-left-radius: 999px; /* 左下角 */
 ```
-## 10、webview下maxlength兼容性
+## 10、maxlength兼容性
 ```
 如果使用maxlength,当用户在输入框输入回车换行，导致无法输入字
 ```
@@ -251,7 +251,7 @@ preferences.javaScriptCanOpenWindowsAutomatically = YES;
     background-size: contain;
 ```
 
-### 31.ios8系统不支持flex布局
+### 31.IOS8系统不支持flex布局
 
 ```
 why：safari 使用的是 webkit内核，在ios8上需要单独加一下兼容才能起作用
@@ -289,8 +289,6 @@ document.addEventListener('touchstart', function () {}, false);
 - 双连接线的数字，形如：00-00-00111
 - 11位数字，形如：13800138000
 
-可能还有其他类型的数字也会被识别，但在具体的业务场景中，有些时候这是不必须的，所以你可以关闭电话自动识别，然后在需要拨号的地方，开启电话呼出和短信功能。
-
 1、关闭电话号码识别：
 ```
 <meta name="format-detection" content="telephone=no" />
@@ -304,4 +302,17 @@ document.addEventListener('touchstart', function () {}, false);
 3、开启发送短信功能：
 ```
 <a href="sms:88888888">88888888</a>
+```
+
+### 34.关闭iOS键盘首字母自动大写
+```
+<input type="text" autocapitalize="off" />
+```
+
+### 35.禁止文本缩放
+当移动设备横竖屏切换时，文本的大小会重新计算，进行相应的缩放，当我们不需要这种情况时，可以选择禁止：
+```
+html {
+	-webkit-text-size-adjust: 100%;
+}
 ```
