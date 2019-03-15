@@ -3,7 +3,7 @@
 
 **在APP下需要经过webview展示和加载网页，相当于把webview当作一个浏览器，而webview就是一个简易的浏览器
 很多H5特性等功能还不怎么支持，就会遇到各种各样的坑。
-问题有：**
+
 
 [toc]
 
@@ -121,6 +121,7 @@ settings.setMediaPlaybackRequiresUserGesture( false );
 
 
 ## 19、不建议使用jq的动画
+在低端安卓手机会有各种卡顿，闪屏的bug
 
 ## 20、line－height
 line-height经常用于文字居中，不同手机显示效果不一样。什么鬼～
@@ -137,14 +138,14 @@ body{
 ## 22、禁止长按 a，img 标签长按出现菜单栏
 ```
 a, img {
-    -webkit-touch-callout: none; /*禁止长按链接与图片弹出菜单*/
+    -webkit-touch-callout: none;
 }
 ```
 
 ## 23、防止被Iframe嵌套
 ```
-if(top != self){
-    location.href = ”about:blank”;
+if (window.location !== window.top.location) {
+    window.top.location = window.location;
 }
 ```
 
@@ -235,7 +236,7 @@ preferences.javaScriptCanOpenWindowsAutomatically = YES;
 ### 29.低端手机加载怪异（渲染不是从上到下，而是竖现出来，超怪）
 
 ```
-没解决
+延迟加载网页
 ```
 
 ### 30.三星S7568I手机不支持background属性简写
@@ -253,7 +254,7 @@ preferences.javaScriptCanOpenWindowsAutomatically = YES;
 ### 31.ios8系统不支持flex布局
 
 ```
-why：safari使用的是webkit内核，在ios8上需要单独加一下兼容才能起作用
+why：safari 使用的是 webkit内核，在ios8上需要单独加一下兼容才能起作用
 
     display: flex;
     display: -webkit-flex; 
@@ -279,4 +280,28 @@ html写法：
 js写法：
 document.addEventListener('touchstart', function () {}, false);
 
+```
+
+### 33.电话号码识别
+在 iOS Safari （其他浏览器和Android均不会）上会对那些看起来像是电话号码的- 数字处理为电话链接，比如：
+- 7位数字，形如：1234567
+- 带括号及加号的数字，形如：(+86)123456789
+- 双连接线的数字，形如：00-00-00111
+- 11位数字，形如：13800138000
+
+可能还有其他类型的数字也会被识别，但在具体的业务场景中，有些时候这是不必须的，所以你可以关闭电话自动识别，然后在需要拨号的地方，开启电话呼出和短信功能。
+
+1、关闭电话号码识别：
+```
+<meta name="format-detection" content="telephone=no" />
+```
+
+2、开启拨打电话功能：
+```
+<a href="tel:88888888">88888888</a>
+```
+
+3、开启发送短信功能：
+```
+<a href="sms:88888888">88888888</a>
 ```
