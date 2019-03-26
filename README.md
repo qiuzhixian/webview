@@ -1,7 +1,7 @@
 # webview下开发的坑
 
 
-**在APP下需要经过webview展示和加载网页，相当于把webview当作一个浏览器，而webview就是一个简易的浏览器
+在APP下需要经过webview展示和加载网页，相当于把webview当作一个浏览器，而webview就是一个简易的浏览器
 很多H5特性等功能还不怎么支持，就会遇到各种各样的坑。
 
 
@@ -9,22 +9,15 @@
 
 ## 1、伪类 :active 生效
 
-- 要CSS伪类 :active 生效，只需要给 document 绑定 touchstart 或 touchend 事件
+- 要CSS伪类 :active 生效，只需要给 document 绑定 touchstart 或 touchend 事件,或者给body添加ontouchstart=""
 
 ```
-<style>
-a {
-  color: #000;
-}
-a:active {
-  color: #fff;
-}
-</style>
-<a herf=foo >bar</a>
+// body添加ontouchstart=""
+<body ontouchstart="" style="display: none">
 
-<script>
-  document.addEventListener('touchstart',function(){},false);
-</script>
+// document 绑定 touchstart
+document.addEventListener('touchstart',function(){},false);
+
 ```
 ## 2、禁止 IOS 弹出各种操作窗口
 ```
@@ -39,18 +32,19 @@ a:active {
 方法一
 webkit-transform-style: preserve-3d;
 /*设置内嵌的元素在 3D 空间如何呈现：保留 3D*/
+
 方法一
 -webkit-backface-visibility: hidden;
 /*（设置进行转换的元素的背面在面对用户时是否可见：隐藏）*/
 ```
 ## 5、css3动画兼容
 ```
-加-webkit
-写法@-webkit-keyframes
+// 加-webkit
+@-webkit-keyframes
 ```
 ## 6、字体使用
 ```
-font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+font-family: -apple-system, BlinkMacSystemFont, "PingFang SC","Helvetica Neue",STHeiti,"Microsoft Yahei",Tahoma,Simsun,sans-serif;
 ```
 ## 7、安卓APP内存溢出
 ```
@@ -315,4 +309,16 @@ document.addEventListener('touchstart', function () {}, false);
 html {
 	-webkit-text-size-adjust: 100%;
 }
+```
+
+### 36.设置添加到主屏幕的 Web App图标
+当我们将一个网页添加到主屏幕时，除了会需要设置标题之外，肯定还需要能够自定义这个App的图标，代码如下：
+```
+<link rel="apple-touch-icon" href="logo.png" />
+```
+
+### 37.添加到主屏幕时隐藏地址栏和状态栏（即全屏）
+当我们将一个网页添加到主屏幕时，会更希望它能有像 App 一样的表现，没有地址栏和状态栏全屏显示，代码如下：
+```
+<meta name="apple-mobile-web-app-capable" content="yes" />
 ```
