@@ -46,7 +46,7 @@
   - [添加到主屏幕时隐藏地址栏和状态栏](#添加到主屏幕时隐藏地址栏和状态栏)
 
 
-- [Webview调试方式](#webview调试方式)
+- [Webview抓包工具](#webview抓包工具)
 
 
 # 一、安卓Webview组件的WebSettings配置
@@ -331,5 +331,5 @@ html {
 <meta name="apple-mobile-web-app-capable" content="yes" />
 ```
 
-# Webview调试方式
-- [常用的抓包方式](https://github.com/qiuzhixian/debug)
+# Webview抓包工具
+- [常用的抓包工具](https://github.com/qiuzhixian/debug)
