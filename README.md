@@ -44,6 +44,7 @@
   - [禁止文本缩放](#禁止文本缩放)
   - [设置添加到主屏幕的 web wpp 图标](#设置添加到主屏幕的-web-wpp-图标)
   - [添加到主屏幕时隐藏地址栏和状态栏](#添加到主屏幕时隐藏地址栏和状态栏)
+  - [IOS在页面回退出现空白遮挡问题](#IOS在页面回退出现空白遮挡问题)
 
 
 - [Webview抓包工具](#webview抓包工具)
@@ -329,6 +330,17 @@ html {
 
 ```html
 <meta name="apple-mobile-web-app-capable" content="yes" />
+```
+## IOS在页面回退出现空白遮挡问题
+```
+// main.js
+router.afterEach(() => {
+  // 通过滚动到顶部来消除空白遮挡
+  window.scrollTo(0, 1);
+  setTimeout(() => {
+      window.scrollTo(0, 0);
+  }, 0);
+});
 ```
 
 # Webview抓包工具
