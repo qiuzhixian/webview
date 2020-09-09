@@ -45,6 +45,8 @@
   - [设置添加到主屏幕的 web wpp 图标](#设置添加到主屏幕的-web-wpp-图标)
   - [添加到主屏幕时隐藏地址栏和状态栏](#添加到主屏幕时隐藏地址栏和状态栏)
   - [IOS在页面回退出现空白遮挡问题](#IOS在页面回退出现空白遮挡问题)
+  - [input输入时弹出键盘导致页面整体上移键盘框消失后页面不能回弹的问题](#input输入时弹出键盘导致页面整体上移键盘框消失后页面不能回弹的问题)
+  - [ios日期转换出现NAN问题](#ios日期转换出现NAN问题)
 
 
 - [Webview抓包工具](#webview抓包工具)
@@ -258,10 +260,10 @@ line-height经常用于文字居中，不同手机显示效果不一样。什么
 
 ```css
 // 不支持：
-background: url(../img/icon_call.png) no-repeat 0 0/contain;
+background: url(../img/icon.png) no-repeat 0 0/contain;
     
 // 需改成
-background-image: url(../img/icon_call.png);
+background-image: url(../img/icon.png);
 background-repeat: no-repeat;
 background-size: contain;
 ```
@@ -341,6 +343,19 @@ router.afterEach(() => {
       window.scrollTo(0, 0);
   }, 0);
 });
+```
+## input输入时弹出键盘导致页面整体上移键盘框消失后页面不能回弹的问题
+```
+部分手机通过input输入时弹出键盘导致页面整体上移键盘框消失后页面不能回弹，按钮不能点击
+当输入框元素失去焦点时滚动设置0即可
+
+document.body.scrollTop = 0 || document.documentElement.scrollTop = 0;
+```
+
+## ios日期转换出现NAN问题
+```
+将日期字符串的格式符号替换成'/'
+eg：'yyyy-MM-dd'.replace(/-/g, '/')
 ```
 
 # Webview抓包工具
